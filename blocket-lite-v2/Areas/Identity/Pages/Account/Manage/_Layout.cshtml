@@ -1,0 +1,67 @@
+﻿@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout))
+    {
+        Layout = (string)parentLayout;
+    }
+    else
+    {
+        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    }
+}
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<div class="wrapper">
+    <nav class="usernav">
+        <ul>
+            <li>
+                <a asp-area="" asp-controller="Home" asp-action="LikedByUser">
+                    <i class="fa-solid fa-star"></i>
+                    <p>FAVORITER</p>
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Home" asp-action="MyProducts">
+                    <i class="fa-solid fa-file"></i>
+                    <p>MINA PRODUKTER</p>
+                </a>
+            </li>
+            <li>
+                <a asp-area="Identity" asp-page="/Account/Manage/Index"
+                   asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <i class="fa-solid fa-file"></i>
+                    <p>MINA UPPGIFTER</p>
+                </a>
+            </li>
+            <li>
+                <a asp-area="" asp-controller="Home" asp-action="CheckOut">
+                    <i class="fa-solid fa-file"></i>
+                    <p>Buy products</p>
+                </a>
+            </li>
+            <li>
+                <a asp-area="Identity" asp-page="/Account/Logout"
+                   asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <p>LOGGA UT</p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<h1>Manage your account</h1>
+
+<div>
+    <h2>Change your account settings</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_ManageNav" />
+        </div>
+        <div class="col-md-9">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+@RenderSection("Scripts", required: false)
+}

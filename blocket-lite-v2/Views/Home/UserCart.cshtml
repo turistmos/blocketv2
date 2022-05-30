@@ -1,0 +1,54 @@
+﻿@model ItemViewModel
+
+ <tbody>
+
+
+                
+           @foreach (var t in Model.addedToCartList)
+
+            {
+                <div class="item">
+
+                    <div class="img-klass">
+                        <img class="bild" src="@t.image" alt="Card image cap">
+                    </div>
+
+                    <div class="card-body">
+
+                        <h3 class="card-title"><strong>Titel: @t.title</strong></h3>
+                        <h3>Pris: @t.price kr</h3>
+                        <p>Info: @t.description</p>
+
+                        <div class="annonsknappar">
+                            @*Ändra till UnLiked senare så man kan redoa sin like*@
+                            <form method="post" asp-action="itemsUnLikedByUser" asp-controller="Home"
+                            asp-route-id="@t.ProductID">
+                                <button class="like-btn" type="submit">
+                                    <i class="fa-solid fa-circle-minus"></i>
+                                </button>
+                            </form>
+                            <form method="post" asp-action="addToCart" asp-controller="Home" asp-route-id="@t.ProductID">
+                                <button class="buy-btn" type="submit">
+                                    <i class="fa-solid fa-angles-right"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            }
+ </tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

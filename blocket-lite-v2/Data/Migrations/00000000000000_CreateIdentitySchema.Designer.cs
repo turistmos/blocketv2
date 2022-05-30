@@ -118,6 +118,12 @@ namespace blocket_lite_v2.Data.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("TEXT")
                         .HasMaxLength(256);
+                    b.Property<string>("FirstName")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(256);
+                    b.Property<string>("LastName")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 

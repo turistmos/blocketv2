@@ -1,0 +1,102 @@
+﻿<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+@model ItemViewModel
+
+ <tbody>
+
+
+                
+     <div class="container">
+         <nav class="usernav">
+             <ul>
+                 <li>
+                     <a asp-area="" asp-controller="Home" asp-action="LikedByUser">
+                         <i class="fa-solid fa-star"></i>
+                         <p>FAVORITER</p>
+                     </a>
+                 </li>
+                 <li>
+                     <a asp-area="" asp-controller="Home" asp-action="MyProducts">
+                         <i class="fa-solid fa-file"></i>
+                         <p>MINA PRODUKTER</p>
+                     </a>
+                 </li>
+                 <li>
+                     <a asp-area="Identity" asp-page="/Account/Manage/Index"
+                        asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                         <i class="fa-solid fa-file"></i>
+                         <p>MINA UPPGIFTER</p>
+                     </a>
+                 </li>
+                 <li>
+                     <a asp-area="" asp-controller="Home" asp-action="CheckOut">
+                         <i class="fa-solid fa-file"></i>
+                         <p>Buy products</p>
+                     </a>
+                 </li>
+                 <li>
+                     <a asp-area="Identity" asp-page="/Account/Logout"
+                        asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                         <i class="fa-solid fa-right-from-bracket"></i>
+                         <p>LOGGA UT</p>
+                     </a>
+                 </li>
+             </ul>
+         </nav>
+         <div class="container">
+             <div class="row">
+                 <div class="col">
+                 </div>
+                 <div class="col">
+                     <div class="form-group">
+                         <form method="post" asp-action="OrderMade" asp-controller="Home" class="form">
+                             <h2 class="display-4">Fyll i leveransuppgifter</h2>
+                             @* <div class="form-group"> *@
+
+
+                             @* <input asp-for="category" class="form-control" /> *@
+
+
+                             <label asp-for="FirstName"></label>
+                             <input asp-for="FirstName" class="form-control" />
+
+                             <label asp-for="LastName"></label>
+                             <input asp-for="LastName" class="form-control" />
+                             <label asp-for="Address"></label>
+                             <input asp-for="Address" class="form-control" />
+                             <label asp-for="ZipCode"></label>
+                             <input asp-for="ZipCode" class="form-control" />
+
+                             <div class="submit_form" id="submit_form">
+                                 <input type="submit" id="form-button" value="Beställ" class="btn-btn-primary" />
+                             </div>
+                         </form>
+                     </div>
+                 </div>
+                 <div class="col">
+                     <h1>Orderöversikt</h1>
+
+                     <h2>Summa: <em>@string.Format("{0:N}", Model.cartSum)kr</em>  </h2>
+                     <h2>Fraktkostnader: <em>99 sek</em></h2>
+                     <br>
+                     <h2>Moms:  <em>@string.Format("{0:N}", @Model.moms)kr</em></h2>
+                     <br>
+                     <h1>Totalpris inkl. moms: <em>@string.Format("{0:N}", @Model.finalPrice)kr</em></h1>
+                     <form method="post" asp-action="continueCheckOut" asp-controller="Home">
+                         <button class="buy-btn" type="submit">
+                             <i class="fa-solid fa-angles-right"></i>
+                         </button>
+                     </form>
+                 </div>
+             </div>
+         </div>
+               
+ </tbody>
+
+
+
+
+
+
+
+
+

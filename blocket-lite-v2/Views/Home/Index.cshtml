@@ -1,9 +1,99 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model ItemViewModel
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<tbody>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="wrapper">
+
+
+        @* skriver ut alla items från sql-databas *@
+        @*<div class="searchcontainer">
+
+            <div class="search">*@
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        {
+
+            <div class="input-group">
+                <div class="form-control">
+                    @Html.TextBox("filter")
+
+                    <input class="btn" type="submit" value="submit" />
+                    @Html.DropDownList("orderVal", new SelectList(Enum.GetValues(typeof(filterVal))),
+                    "Filter")
+
+
+                </div>
+            </div>
+
+
+            @*<div class="input-group">
+                    <div class="form-outline">
+                        <input id="search-input" type="search" id="form1" class="form-control" />
+                        <label class="form-label" for="form1">Search</label>
+                    </div>
+                    <button id="search-button" type="button" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>*@
+
+        }
+        @*</div>
+            </div>*@
+        @*<div class="knappdiv">
+
+                <form method="post" asp-action="Show_all" asp-controller="Home">
+                    <input type="submit" id="form-button" value="Allt" class="knapp" />
+                </form>
+                <form method="post" asp-action="Show_clothes" asp-controller="Home">
+                    <input type="submit" id="form-button" value="Kläder" class="knapp" />
+                </form>
+                <form method="post" asp-action="Show_vehicles" asp-controller="Home">
+                    <input type="submit" id="form-button" value="Fordon" class="knapp" />
+                </form>
+
+            </div>*@
+
+        <div class="grid-container">
+            @foreach (var t in Model.ItemList)
+            {
+                <div class="item">
+
+                    <div class="img-klass">
+                        <img class="bild" src="@t.image" alt="Card image cap">
+                    </div>
+
+                    <div class="card-body">
+
+                        <h3 class="card-title"><strong>Titel: @t.title</strong></h3>
+                        <h3>Pris: @t.price kr</h3>
+                        <p>Info: @t.description</p>
+
+                        <div class="annonsknappar">
+                            <form method="post" asp-action="itemsLikedByUser" asp-controller="Home"
+                                  asp-route-id="@t.ProductID">
+                                <button class="like-btn" type="submit">
+                                    <i class="fa-solid fa-star"></i>
+                                </button>
+                            </form>
+                            <form method="post" asp-action="addToCart" asp-controller="Home"
+                                  asp-route-id="@t.ProductID">
+                                <button class="buy-btn" type="submit">
+                                    <i class="fa-solid fa-angles-right"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</tbody>
+
+
+
+
+
 

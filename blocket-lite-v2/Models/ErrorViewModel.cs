@@ -1,4 +1,4 @@
-﻿namespace blocket_lite_v2.Models;
+namespace blocket_lite.Models;
 
 public class ErrorViewModel
 {

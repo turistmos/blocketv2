@@ -1,0 +1,135 @@
+﻿<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+@model ItemViewModel
+
+ <tbody>
+
+
+                
+     <div class="container">
+         <nav class="usernav">
+             <ul>
+                 <li>
+                     <a asp-area="" asp-controller="Home" asp-action="LikedByUser">
+                         <i class="fa-solid fa-star"></i>
+                         <p>FAVORITER</p>
+                     </a>
+                 </li>
+                 <li>
+                     <a asp-area="" asp-controller="Home" asp-action="MyProducts">
+                         <i class="fa-solid fa-file"></i>
+                         <p>MINA PRODUKTER</p>
+                     </a>
+                 </li>
+                 <li>
+                     <a asp-area="Identity" asp-page="/Account/Manage/Index"
+                        asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                         <i class="fa-solid fa-file"></i>
+                         <p>MINA UPPGIFTER</p>
+                     </a>
+                 </li>
+                 <li>
+                     <a asp-area="" asp-controller="Home" asp-action="CheckOut">
+                         <i class="fa-solid fa-file"></i>
+                         <p>Buy products</p>
+                     </a>
+                 </li>
+                 <li>
+                     <a asp-area="Identity" asp-page="/Account/Logout"
+                        asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                         <i class="fa-solid fa-right-from-bracket"></i>
+                         <p>LOGGA UT</p>
+                     </a>
+                 </li>
+             </ul>
+         </nav>
+         <div class="container">
+             <div class="row">
+                 <div class="col">
+                     @foreach (var t in Model.addedToCartList)
+
+                     {
+                         <div class="item">
+
+                             <div class="img-klass">
+                                 <img class="bild" src="@t.image" alt="Card image cap">
+                             </div>
+
+                             <div class="card-body">
+
+                                 <h3 class="card-title"><strong>Titel: @t.title</strong></h3>
+                                 <h3>Pris: @t.price kr</h3>
+                                 <p>Info: @t.description</p>
+
+                                 <div class="annonsknappar">
+                                     <form method="post" asp-action="itemsDeletedFromCart" asp-controller="Home"
+                                           asp-route-id="@t.ProductID">
+                                         <button class="like-btn" type="submit">
+                                             <i class="fa-solid fa-circle-minus"></i>
+                                         </button>
+                                     </form>
+                                     <form method="post" asp-action="addToCart" asp-controller="Home" asp-route-id="@t.ProductID">
+                                         <button class="buy-btn" type="submit">
+                                             <i class="fa-solid fa-angles-right"></i>
+                                         </button>
+                                     </form>
+                                 </div>
+                             </div>
+                         </div>
+
+                     }
+                 </div>
+                 <div class="col">
+
+                 </div>
+                 <div class="col">
+                     <div class="well">
+                         <ul class="list-group">
+
+
+                             <h1>Orderöversikt</h1>
+
+                             <li class="list-group-item">
+                                 <h2>Summa: <em>@string.Format("{0:N}", Model.cartSum)kr</em>  </h2>
+                             </li>
+                             <li class="list-group-item">
+                                 <h2>Fraktkostnader: <em>99 sek</em></h2>
+                             </li>
+                             <li class="list-group-item">
+                                 <br>
+                                 <h2>Moms:  <em>@string.Format("{0:N}", @Model.moms)kr</em></h2>
+                                 <br>
+                             </li>
+                             <li class="list-group-item">
+                                 <h1>Totalpris inkl. moms: <em>@string.Format("{0:N}", @Model.finalPrice)kr</em></h1>
+                             </li>
+                             <li class="list-group-item">
+                                 <form method="post" asp-action="continueCheckOut" asp-controller="Home">
+                                     <button class="buy-btn" type="submit">
+                                         <i class="fa-solid fa-angles-right"></i>
+                                     </button>
+                                 </form>
+                             </li>
+
+                         </ul>
+                         
+
+                         
+                         
+                         
+                         
+                         
+                     </div>
+                 </div>
+             </div>
+         </div>
+               
+ </tbody>
+
+
+
+
+
+
+
+
+

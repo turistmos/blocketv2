@@ -1,0 +1,63 @@
+﻿@model ItemViewModel
+
+<tbody>
+    <div class="wrapper">
+        <nav class="usernav">
+            <ul>
+                <li>
+                    <a asp-area="" asp-controller="Home" asp-action="LikedByUser">
+                        <i class="fa-solid fa-star"></i>
+                        <p>FAVORITER</p>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Home" asp-action="MyProducts">
+                        <i class="fa-solid fa-file"></i>
+                        <p>MINA PRODUKTER</p>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="Identity" asp-page="/Account/Manage/Index"
+                       asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <i class="fa-solid fa-file"></i>
+                        <p>MINA UPPGIFTER</p>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Home" asp-action="CheckOut">
+                        <i class="fa-solid fa-file"></i>
+                        <p>Buy products</p>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="Identity" asp-page="/Account/Logout"
+                       asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <p>LOGGA UT</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="grid-container">
+            @foreach (var t in Model.userItemList)
+            {
+                <div class="item">
+                    <div class="img-klass">
+                        <img class="bild" src="@t.image" alt="Card image cap">
+                    </div>
+
+                    <div class="card-body">
+
+                        <h3 class="card-title"><strong>Titel: @t.title</strong></h3>
+                        <h3>Pris: @t.price kr</h3>
+                        <p>Info: @t.description</p>
+                        <form method="post" asp-action="deleteProduct" asp-controller="Home" asp-route-id="@t.ProductID">
+                            <button class="btn btn-outline-danger" type="submit">Ta bort</button>
+                        </form>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</tbody>
