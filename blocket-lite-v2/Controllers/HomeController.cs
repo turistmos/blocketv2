@@ -77,6 +77,11 @@ public class HomeController : Controller
         var userCartItems = GetUserCartItems();
         return View(userCartItems);
     }
+    public IActionResult Product(int id)
+    {
+        var productItem = GetOneItem(id);
+        return View(productItem);
+    }
 
 
 
@@ -188,6 +193,7 @@ public class HomeController : Controller
                                     price = reader.GetInt32(2),
                                     description = reader.GetString(3),
                                     image = reader.GetString(9),
+                                    username = reader.GetString(10),
                                     ProductID = reader.GetInt32(11)
 
                                 });
@@ -251,6 +257,57 @@ public class HomeController : Controller
                 return new ItemViewModel
                 {
                     userItemList = userItemList
+                };
+            }
+
+        }
+
+
+
+    }
+    internal ItemViewModel GetOneItem(int id)
+    {
+        List<ItemModel> singleItemList = new();
+        using (SqliteConnection con =
+        new SqliteConnection("Data Source=db.sqlite"))
+        {
+            using (var tableCmd = con.CreateCommand())
+            {
+
+                con.Open();
+                tableCmd.CommandText = "SELECT * FROM products4 WHERE ProductID ='" + id + "'";
+                using (var reader = tableCmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            singleItemList.Add(
+                                new ItemModel
+                                {
+                                    category = reader.GetString(0),
+                                    title = reader.GetString(1),
+                                    price = reader.GetInt32(2),
+                                    description = reader.GetString(3),
+                                    color = reader.GetString(6),
+                                    image = reader.GetString(9),
+                                    username = reader.GetString(10),
+                                    ProductID = reader.GetInt32(11)
+
+                                });
+                        }
+                    }
+                    else
+                    {
+                        return new ItemViewModel
+                        {
+                            singleItemList = singleItemList
+                        };
+                    }
+                };
+                return new ItemViewModel
+                {
+                    singleItemList = singleItemList
                 };
             }
 
@@ -607,7 +664,7 @@ public class HomeController : Controller
                 }
             }
         }
-        return Redirect("https://localhost:7175/Home/UserCart");
+        return Redirect("https://localhost:7175/Home/CheckOut");
     }
 
     public RedirectResult deleteProduct(int id)
