@@ -391,7 +391,7 @@ public class HomeController : Controller
             using (var tableCmd = con.CreateCommand())
             {
                 con.Open();
-                tableCmd.CommandText = "SELECT products4.category,products4.title,products4.price,products4.description,products4.image,products4.ProductID FROM LinkTable INNER JOIN products4 ON LinkTable.ProductID = products4.ProductID WHERE LinkTable.Cart = 0 AND LinkTable.username ='" + @User.Identity?.Name + "'";
+                tableCmd.CommandText = "SELECT products4.category,products4.title,products4.price,products4.description,products4.image,products4.ProductID,products4.username FROM LinkTable INNER JOIN products4 ON LinkTable.ProductID = products4.ProductID WHERE LinkTable.Cart = 0 AND LinkTable.username ='" + @User.Identity?.Name + "'";
                 try
                 {
                     using (var reader = tableCmd.ExecuteReader())
@@ -408,7 +408,8 @@ public class HomeController : Controller
                                         price = reader.GetInt32(2),
                                         description = reader.GetString(3),
                                         image = reader.GetString(4),
-                                        ProductID = reader.GetInt32(5)
+                                        ProductID = reader.GetInt32(5),
+                                        username = reader.GetString(6)
 
                                     });
                             }

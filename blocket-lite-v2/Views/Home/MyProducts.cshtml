@@ -50,7 +50,7 @@
 
                         <h3 class="card-title"><strong>Titel: @t.title</strong></h3>
                         <h3>Pris: @t.price kr</h3>
-                        <p>Info: @t.description</p>
+                        
                         <form method="post" asp-action="deleteProduct" asp-controller="Home" asp-route-id="@t.ProductID">
                             <button class="btn btn-outline-danger" type="submit">Ta bort</button>
                         </form>

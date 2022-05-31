@@ -11,6 +11,7 @@ namespace blocket_lite.Models.ProductViewModel
         public List<ItemModel> likedItems { get; set; }
         public List<ItemModel> userLikedItems { get; set; }
         public List<ItemModel> addedToCartList { get; set; }
+        public List<ItemModel> singleItemList { get; set; }
         public int cartSum { get; set; }
         public double finalPrice { get; set; }
         public double moms { get; set; }
