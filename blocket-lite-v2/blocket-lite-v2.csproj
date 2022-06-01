@@ -8,6 +8,7 @@
     <RootNamespace>blocket_lite_v2</RootNamespace>
   </PropertyGroup>
 
+
   <ItemGroup>
     <None Remove="Microsoft.Data.Sqlite.Core" />
   </ItemGroup>

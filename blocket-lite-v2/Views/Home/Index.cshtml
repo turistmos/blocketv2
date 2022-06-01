@@ -21,10 +21,12 @@
                     @Html.TextBox("filter")
 
                     <input class="btn" type="submit" value="submit" />
-                    @Html.DropDownList("orderVal", new SelectList(Enum.GetValues(typeof(filterVal))),
-                    "Filter")
-
-
+                    
+                        @Html.DropDownList("orderVal", new SelectList(Enum.GetValues(typeof(filterVal))),
+                        "Filter", new
+                        {
+                            onchange = @"form.submit();"
+                        })
                 </div>
             </div>
 
@@ -69,7 +71,7 @@
 
                         <h3 class="card-title"><strong>Titel: @t.title</strong></h3>
                         <h3>Pris: @t.price kr</h3>
-                        <p>user: @t.username</p>
+                        <p>Säljare: @t.username</p>
 
                         <div class="annonsknappar">
                             <form method="post" asp-action="itemsLikedByUser" asp-controller="Home"
@@ -91,6 +93,7 @@
         </div>
     </div>
 </tbody>
+
 
 
 

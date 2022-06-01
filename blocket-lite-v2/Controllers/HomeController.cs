@@ -336,7 +336,7 @@ public class HomeController : Controller
                     if (reader.HasRows)
                     {
 
-                        return Redirect("https://localhost:7175//Home/Index");
+                        return Redirect("https://localhost:7175/Home/Index");
                     }
                     else
                     {
