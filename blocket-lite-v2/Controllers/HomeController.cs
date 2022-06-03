@@ -82,6 +82,10 @@ public class HomeController : Controller
         var productItem = GetOneItem(id);
         return View(productItem);
     }
+    public IActionResult OrderComplete()
+    { 
+        return View();
+    }
 
 
 
@@ -719,6 +723,8 @@ public class HomeController : Controller
     public RedirectResult OrderMade(CheckOutModel order)
     {
 
+
+
         using (SqliteConnection con =
         new SqliteConnection("Data Source=db.sqlite"))
         {
@@ -727,15 +733,23 @@ public class HomeController : Controller
                 string txtSQL = "INSERT INTO OrdersMade (FirstName,LastName,Address,ZIPCode,username) VALUES (@0,@1,@2,@3,@4)";
 
 
+
+
                 con.Open();
 
+
+
                 tableCmd.CommandText = txtSQL;
+
+
 
                 tableCmd.Parameters.AddWithValue("@0", order.FirstName);
                 tableCmd.Parameters.AddWithValue("@1", order.LastName);
                 tableCmd.Parameters.AddWithValue("@2", order.Address);
                 tableCmd.Parameters.AddWithValue("@3", order.ZipCode);
                 tableCmd.Parameters.AddWithValue("@4", @User.Identity?.Name);
+
+
 
                 try
                 {
@@ -744,13 +758,41 @@ public class HomeController : Controller
                 catch (Exception ex)
                 {
 
+
+
                     Console.WriteLine(ex.Message);
                 }
             }
         }
-        return Redirect("https://localhost:7175/");
+
+
+
+        using (SqliteConnection con =
+        new SqliteConnection("Data Source=db.sqlite"))
+        {
+            using (var tableCmd = con.CreateCommand())
+            {
+                con.Open();
+                tableCmd.CommandText = "UPDATE LinkTable SET CART = '3' WHERE CART = '1' AND username ='" + @User.Identity?.Name + "'";
+
+
+
+                try
+                {
+                    tableCmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+
+
+
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+        return Redirect("https://localhost:7175/Home/OrderComplete");
     }
 
-    
+
 }
 

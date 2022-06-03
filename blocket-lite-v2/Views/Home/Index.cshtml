@@ -9,10 +9,6 @@
     <div class="wrapper">
 
 
-        @* skriver ut alla items från sql-databas *@
-        @*<div class="searchcontainer">
-
-            <div class="search">*@
         @using (Html.BeginForm("Index", "Home", FormMethod.Get))
         {
 
@@ -30,33 +26,8 @@
                 </div>
             </div>
 
-
-            @*<div class="input-group">
-                    <div class="form-outline">
-                        <input id="search-input" type="search" id="form1" class="form-control" />
-                        <label class="form-label" for="form1">Search</label>
-                    </div>
-                    <button id="search-button" type="button" class="btn btn-primary">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>*@
-
         }
-        @*</div>
-            </div>*@
-        @*<div class="knappdiv">
-
-                <form method="post" asp-action="Show_all" asp-controller="Home">
-                    <input type="submit" id="form-button" value="Allt" class="knapp" />
-                </form>
-                <form method="post" asp-action="Show_clothes" asp-controller="Home">
-                    <input type="submit" id="form-button" value="Kläder" class="knapp" />
-                </form>
-                <form method="post" asp-action="Show_vehicles" asp-controller="Home">
-                    <input type="submit" id="form-button" value="Fordon" class="knapp" />
-                </form>
-
-            </div>*@
+       
 
         <div class="grid-container">
             @foreach (var t in Model.ItemList)
