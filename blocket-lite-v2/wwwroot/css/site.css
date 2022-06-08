@@ -107,7 +107,7 @@ body {
 .loggin h2 {
     color: darkblue;
 }
-
+/*
 .form-group {
     display: flex;
     flex-direction: column;
@@ -125,7 +125,7 @@ body {
     font-size: 18px;
     font-weight: 500;
     border: none;
-}
+}*/
 
 .loggin .login-btn {
     padding: 8px 20px;
