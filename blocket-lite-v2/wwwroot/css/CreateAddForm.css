@@ -1,0 +1,10 @@
+﻿.btn-primary{
+    background-color: forestgreen;
+    border-color: darkgreen;
+}
+
+.btn-primary:hover{
+    background-color: white;
+    color: darkgreen;
+    border-color: inherit;
+}

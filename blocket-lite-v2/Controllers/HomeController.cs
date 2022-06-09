@@ -137,14 +137,14 @@ public class HomeController : Controller
 
                 tableCmd.CommandText = txtSQL;
 
-                tableCmd.Parameters.AddWithValue("@0", product.category);
-                tableCmd.Parameters.AddWithValue("@1", product.title);
-                tableCmd.Parameters.AddWithValue("@2", product.price);
-                tableCmd.Parameters.AddWithValue("@3", product.description);
-                tableCmd.Parameters.AddWithValue("@4", product.image);
-                tableCmd.Parameters.AddWithValue("@5", product.miles);
-                tableCmd.Parameters.AddWithValue("@6", product.year);
-                tableCmd.Parameters.AddWithValue("@7", product.color);
+                tableCmd.Parameters.AddWithValue("@0", product.Category);
+                tableCmd.Parameters.AddWithValue("@1", product.Title);
+                tableCmd.Parameters.AddWithValue("@2", product.Price);
+                tableCmd.Parameters.AddWithValue("@3", product.Description);
+                tableCmd.Parameters.AddWithValue("@4", product.Image);
+                tableCmd.Parameters.AddWithValue("@5", product.Miles);
+                tableCmd.Parameters.AddWithValue("@6", product.Year);
+                tableCmd.Parameters.AddWithValue("@7", product.Color);
                 tableCmd.Parameters.AddWithValue("@8", @User.Identity?.Name);
 
                 try
@@ -192,12 +192,12 @@ public class HomeController : Controller
                             itemList.Add(
                                 new ItemModel
                                 {
-                                    category = reader.GetString(0),
-                                    title = reader.GetString(1),
-                                    price = reader.GetInt32(2),
-                                    description = reader.GetString(3),
-                                    image = reader.GetString(9),
-                                    username = reader.GetString(10),
+                                    Category = reader.GetString(0),
+                                    Title = reader.GetString(1),
+                                    Price = reader.GetInt32(2),
+                                    Description = reader.GetString(3),
+                                    Image = reader.GetString(9),
+                                    Username = reader.GetString(10),
                                     ProductID = reader.GetInt32(11)
 
                                 });
@@ -240,11 +240,11 @@ public class HomeController : Controller
                             userItemList.Add(
                                 new ItemModel
                                 {
-                                    category = reader.GetString(0),
-                                    title = reader.GetString(1),
-                                    price = reader.GetInt32(2),
-                                    description = reader.GetString(3),
-                                    image = reader.GetString(9),
+                                    Category = reader.GetString(0),
+                                    Title = reader.GetString(1),
+                                    Price = reader.GetInt32(2),
+                                    Description = reader.GetString(3),
+                                    Image = reader.GetString(9),
                                     ProductID = reader.GetInt32(11)
 
                                 });
@@ -289,13 +289,13 @@ public class HomeController : Controller
                             singleItemList.Add(
                                 new ItemModel
                                 {
-                                    category = reader.GetString(0),
-                                    title = reader.GetString(1),
-                                    price = reader.GetInt32(2),
-                                    description = reader.GetString(3),
-                                    color = reader.GetString(6),
-                                    image = reader.GetString(9),
-                                    username = reader.GetString(10),
+                                    Category = reader.GetString(0),
+                                    Title = reader.GetString(1),
+                                    Price = reader.GetInt32(2),
+                                    Description = reader.GetString(3),
+                                    Color = reader.GetString(6),
+                                    Image = reader.GetString(9),
+                                    Username = reader.GetString(10),
                                     ProductID = reader.GetInt32(11)
 
                                 });
@@ -407,13 +407,13 @@ public class HomeController : Controller
                                 userLikedItems.Add(
                                     new ItemModel
                                     {
-                                        category = reader.GetString(0),
-                                        title = reader.GetString(1),
-                                        price = reader.GetInt32(2),
-                                        description = reader.GetString(3),
-                                        image = reader.GetString(4),
+                                        Category = reader.GetString(0),
+                                        Title = reader.GetString(1),
+                                        Price = reader.GetInt32(2),
+                                        Description = reader.GetString(3),
+                                        Image = reader.GetString(4),
                                         ProductID = reader.GetInt32(5),
-                                        username = reader.GetString(6)
+                                        Username = reader.GetString(6)
 
                                     });
                             }
@@ -553,11 +553,11 @@ public class HomeController : Controller
                                 addedToCartList.Add(
                                     new ItemModel
                                     {
-                                        category = reader.GetString(0),
-                                        title = reader.GetString(1),
-                                        price = reader.GetInt32(2),
-                                        description = reader.GetString(3),
-                                        image = reader.GetString(4),
+                                        Category = reader.GetString(0),
+                                        Title = reader.GetString(1),
+                                        Price = reader.GetInt32(2),
+                                        Description = reader.GetString(3),
+                                        Image = reader.GetString(4),
                                         ProductID = reader.GetInt32(5)
 
                                     });
@@ -596,7 +596,7 @@ public class HomeController : Controller
                                 itemsInCart.Add(
                                     new ItemModel
                                     {
-                                        price = reader.GetInt32(2)
+                                        Price = reader.GetInt32(2)
                                     });
                             }
                         }
@@ -604,7 +604,7 @@ public class HomeController : Controller
                         {
                             foreach (ItemModel x in itemsInCart)
                             {
-                                priceSum += x.price;
+                                priceSum += x.Price;
 
                             }
                             return new ItemViewModel
@@ -617,7 +617,7 @@ public class HomeController : Controller
 
                     foreach (ItemModel x in itemsInCart)
                     {
-                        priceSum += x.price;
+                        priceSum += x.Price;
                     }
                     double priceWithMoms = (priceSum * 1.25) + 99;
                     double moms = priceSum * 0.25;

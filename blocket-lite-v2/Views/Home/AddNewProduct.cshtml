@@ -1,71 +1,82 @@
 ﻿@model ItemModel
-
-
-<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/CreateAddForm.css" />
 <div class="container">
     <div class="form-group">
         <form method="post" asp-action="Insert" asp-controller="Home" class="form">
-            <h2 class="display-4">Lägg till nytt objekt</h2>
+            <h2 class="display-4">Skapa annons</h2>
             @* <div class="form-group"> *@
 
-            <label asp-for="category"></label>
+            <label asp-for="Category" class="form-label"></label>
             @* <input asp-for="category" class="form-control" /> *@
-            <select asp-for="category" class="form-control" id="category" onchange="show_car() ">
-                <option value="">Välj Kategori</option>
+            <select asp-for="Category" class="form-select" id="category" onchange="show_car()">
+                <option selected>Välj Kategori</option>
                 <option value="vehicle">Bil</option>
                 <option value="cloths">Kläder</option>
             </select>
+            <br />
 
             <div class="forms_div" id="forms_div">
 
-                <label asp-for="title"></label>
-                <input asp-for="title" class="form-control" />
+                <label id="Title" asp-for="Title"></label>
+                <input asp-for="Title" class="form-control" />
+                <br />
 
-                <label asp-for="price"></label>
-                <input asp-for="price" class="form-control" />
+                <label id="Price" asp-for="Price"></label>
+                <input asp-for="Price" class="form-control" />
+                <br />
 
-                <label asp-for="description"></label>
-                <textarea asp-for="description" class="form-control"></textarea>
+                <label id="Desc" asp-for="Description"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <br />
 
-                <label asp-for="color"></label>
-                <textarea asp-for="color" class="form-control"></textarea>
+                <label id="Color" asp-for="Color"></label>
+                <textarea asp-for="Color" class="form-control"></textarea>
+                <br />
 
-                <label asp-for="image"></label>
-                <textarea asp-for="image" class="form-control"></textarea>
+                <label id="Image" asp-for="Image"></label>
+                <textarea asp-for="Image" class="form-control"></textarea>
+                <br />
 
 
 
             </div>
             <div class="vehicle_form" id="vehicle_form">
 
-                <label asp-for="miles"></label>
-                <input asp-for="miles" class="form-control" />
+                <label id="Miles" asp-for="Miles"></label>
+                <input asp-for="Miles" class="form-control" />
+                <br />
 
-                <label asp-for="year"></label>
-                <input asp-for="year" class="form-control" />
+                <label id="Year" asp-for="Year"></label>
+                <input asp-for="Year" class="form-control" />
+                <br />
 
             </div>
             <div class="clothes_form" id="clothes_form">
 
-                <label for="size">Storlek</label>
-                <select asp-for="size" class="form-control">
+                <label id="Size" asp-for="Size"></label>
+                <select asp-for="Size" class="form-control">
                     <option value="">Välj storlek</option>
                     <option value="l">Large</option>
                     <option value="m">Medium</option>
                     <option value="s">Small</option>
                 </select>
+                <br />
 
-                <label for="gender">Kön</label>
-                <select asp-for="gender" class="form-control">
+                <label id="Gender" asp-for="Gender"></label>
+                <select asp-for="Gender" class="form-control">
                     <option value="">Välj kön</option>
                     <option value="m">Herr</option>
                     <option value="f">Kvinna</option>
                     <option value="u">Unisex</option>
                 </select>
+                <br />
             </div>
             <div class="submit_form" id="submit_form">
-                <input type="submit" id="form-button" value="Lägg till annons" class="btn-btn-primary" />
+                <input type="submit" id="form-button" value="Lägg till annons" class="btn btn-primary" />
             </div>
+            <br />
         </form>
     </div>
-    </div>
+</div>
+
+<script  src="~/js/CreateAdd.js"></script>
