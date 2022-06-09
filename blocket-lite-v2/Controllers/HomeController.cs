@@ -38,11 +38,11 @@ public class HomeController : Controller
     //    return Redirect("https://localhost:7175/Home/Index");
     //}
 
-    public IActionResult Index(string filter,string orderVal)
+    public IActionResult Index(string filter, string orderVal)
     {
         // hämtar alla objekt i databasen
         var order = Order(orderVal);
-        var itemListModel = GetAllItems(filter,order);
+        var itemListModel = GetAllItems(filter, order);
         return View(itemListModel);
     }
 
@@ -83,7 +83,7 @@ public class HomeController : Controller
         return View(productItem);
     }
     public IActionResult OrderComplete()
-    { 
+    {
         return View();
     }
 
@@ -100,7 +100,7 @@ public class HomeController : Controller
         switch (orderVal)
         {
             case "PriceUp":
-                    return "price";
+                return "price";
                 break;
 
             case "PriceDown":
@@ -116,15 +116,14 @@ public class HomeController : Controller
                 return "price";
                 break;
         }
-        
+
     }
 
     //Lägger in values från formulär till databasen.
     public RedirectResult Insert(ItemModel product)
     {
 
-        // if (product.category == "vehicle")
-        // {
+        string upperTitle = product.Title.Replace(product.Title[0], char.ToUpper(product.Title[0]));
         using (SqliteConnection con =
        new SqliteConnection("Data Source=db.sqlite"))
         {
@@ -138,7 +137,7 @@ public class HomeController : Controller
                 tableCmd.CommandText = txtSQL;
 
                 tableCmd.Parameters.AddWithValue("@0", product.Category);
-                tableCmd.Parameters.AddWithValue("@1", product.Title);
+                tableCmd.Parameters.AddWithValue("@1", upperTitle);
                 tableCmd.Parameters.AddWithValue("@2", product.Price);
                 tableCmd.Parameters.AddWithValue("@3", product.Description);
                 tableCmd.Parameters.AddWithValue("@4", product.Image);
@@ -161,7 +160,7 @@ public class HomeController : Controller
         return Redirect("https://localhost:7175/");
     }
     //hämtar alla produkter från databasen till en lista.
-    internal ItemViewModel GetAllItems(string _filter ,string _order)
+    internal ItemViewModel GetAllItems(string _filter, string _order)
     {
         List<ItemModel> itemList = new();
 
@@ -171,17 +170,17 @@ public class HomeController : Controller
             using (var tableCmd = con.CreateCommand())
             {
                 con.Open();
-                
+
                 if (!String.IsNullOrEmpty(_filter))
                 {
                     tableCmd.Parameters.AddWithValue("@0", _filter);
 
-                    tableCmd.CommandText = "SELECT * FROM products4 WHERE description LIKE '%" + _filter + "%' OR title LIKE '%" + _filter + "%' ORDER BY "+_order;
+                    tableCmd.CommandText = "SELECT * FROM products4 WHERE description LIKE '%" + _filter + "%' OR title LIKE '%" + _filter + "%' ORDER BY " + _order;
 
                 }
                 else
                 {
-                    tableCmd.CommandText = "SELECT * FROM products4 ORDER BY "+_order;
+                    tableCmd.CommandText = "SELECT * FROM products4 ORDER BY " + _order;
                 }
                 using (var reader = tableCmd.ExecuteReader())
                 {
@@ -643,10 +642,10 @@ public class HomeController : Controller
             }
         }
 
-    
 
 
-}
+
+    }
 
     public RedirectResult itemsDeletedFromCart(int id)
     {

@@ -67,11 +67,6 @@
                                              <i class="fa-solid fa-circle-minus"></i>
                                          </button>
                                      </form>
-                                     <form method="post" asp-action="addToCart" asp-controller="Home" asp-route-id="@t.ProductID">
-                                         <button class="buy-btn" type="submit">
-                                             <i class="fa-solid fa-angles-right"></i>
-                                         </button>
-                                     </form>
                                  </div>
                              </div>
                          </div>
@@ -102,13 +97,15 @@
                              <li class="list-group-item">
                                  <h1>Totalpris inkl. moms: <em>@string.Format("{0:N}", @Model.finalPrice)kr</em></h1>
                              </li>
+                             <div class="annonsknappar">
                              <li class="list-group-item">
                                  <form method="post" asp-action="continueCheckOut" asp-controller="Home">
                                      <button class="buy-btn" type="submit">
-                                         <i class="fa-solid fa-angles-right"></i>
+                                         <i class="fa-solid fa-cart-shopping"></i>
                                      </button>
                                  </form>
                              </li>
+                             </div>
 
                          </ul>
                          

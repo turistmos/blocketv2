@@ -9,7 +9,7 @@
     <div class="wrapper">
 
 
-        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        @* @using (Html.BeginForm("Index", "Home", FormMethod.Get))
         {
 
             <div class="input-group">
@@ -17,16 +17,62 @@
                     @Html.TextBox("filter", "", new {@placeholder = "Sök..."})
                     <input class="btn btn-primary" type="submit" value="submit" />
                     
-                        @Html.DropDownList("orderVal", new SelectList(Enum.GetValues(typeof(filterVal))),
-                        "Filter", new
+                       
+                </div>
+                <div class="input-group-append">
+                 @Html.DropDownList("orderVal", new SelectList(Enum.GetValues(typeof(filterVal))),
+                        "Order", new
                         {
                             onchange = @"form.submit();"
                         })
                 </div>
             </div>
+            
+
+        } *@
+
+
+<!-- Start video hero -->
+<div class="video-hero jquery-background-video-wrapper demo-video-wrapper">
+  <video class="jquery-background-video" autoplay muted loop poster="https://d2ezlykacdqcnj.cloudfront.net/_assets/home-video/beach-waves-loop.jpg">
+    <source src="https://d2ezlykacdqcnj.cloudfront.net/_assets/home-video/beach-waves-loop.mp4" type="video/mp4">
+    <source src="https://d2ezlykacdqcnj.cloudfront.net/_assets/home-video/beach-waves-loop.webm" type="video/webm">
+    <source src="https://d2ezlykacdqcnj.cloudfront.net/_assets/home-video/beach-waves-loop.ogv" type="video/ogg">
+  </video>
+	  <div class="video-overlay"></div>
+  	<div class="page-width">
+		    <div class="video-hero--content">
+			     @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        {
+
+            <div class="input-group">
+                <div class="form-control">
+                    @Html.TextBox("filter", "", new {@placeholder = "Sök..."})
+                    <input class="btn btn-primary" type="submit" value="submit" />
+                    
+                       
+                </div>
+                <div class="input-group-append">
+                 @Html.DropDownList("orderVal", new SelectList(Enum.GetValues(typeof(filterVal))),
+                        "Order", new
+                        {
+                            onchange = @"form.submit();"
+                        })
+                </div>
+            </div>
+            
 
         }
-       
+    		</div>
+  	</div>
+</div>
+<!-- End video hero -->
+
+<div id="content">
+	  <div class="page-width">
+
+	  </div>
+</div>
 
         <div class="grid-container">
             @foreach (var t in Model.ItemList)
@@ -39,9 +85,9 @@
 
                     <div class="card-body">
 
-                        <h3 class="card-title"><strong>Titel: @t.Title</strong></h3>
-                        <h3>Pris: @t.Price kr</h3>
-                        <p>Säljare: @t.Username</p>
+                        <h3 class="card-title"><strong>@t.Title</strong></h3>
+                        <h3>@t.Price kr</h3>
+                        <p>@t.Username</p>
 
                         <div class="annonsknappar">
                             <form method="post" asp-action="itemsLikedByUser" asp-controller="Home"

@@ -26,3 +26,4 @@
 }
 
 show_car();
+$('.jquery-background-video').bgVideo({ fadeIn: 2000 });
