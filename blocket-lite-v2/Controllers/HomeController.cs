@@ -99,11 +99,11 @@ public class HomeController : Controller
     {
         switch (orderVal)
         {
-            case "PriceUp":
+            case "Billigast":
                 return "price";
                 break;
 
-            case "PriceDown":
+            case "Dyrast":
                 return "price DESC";
                 break;
             case "AÖ":
@@ -506,7 +506,6 @@ public class HomeController : Controller
             using (var tableCmd = con.CreateCommand())
             {
                 string txtSQL = "INSERT INTO LinkTable (username,ProductID,Cart) VALUES (@0,@1,@2)";
-
 
                 con.Open();
 

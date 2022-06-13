@@ -29,11 +29,11 @@ namespace blocket_lite.Models
     }
     public enum filterVal
     {
-        PriceUp,
-        PriceDown,
+        Billigast,
+        Dyrast,
         AÖ,
         ÖA
-        
+
     }
 
 
