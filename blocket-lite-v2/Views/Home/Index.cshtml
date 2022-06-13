@@ -1,5 +1,5 @@
 ﻿@model ItemViewModel
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
@@ -12,67 +12,75 @@
         @* @using (Html.BeginForm("Index", "Home", FormMethod.Get))
         {
 
-            <div class="input-group">
-                <div class="form-control">
-                    @Html.TextBox("filter", "", new {@placeholder = "Sök..."})
-                    <input class="btn btn-primary" type="submit" value="submit" />
-                    
-                       
-                </div>
-                <div class="input-group-append">
-                 @Html.DropDownList("orderVal", new SelectList(Enum.GetValues(typeof(filterVal))),
-                        "Order", new
-                        {
-                            onchange = @"form.submit();"
-                        })
-                </div>
-            </div>
-            
+        <div class="input-group">
+        <div class="form-control">
+        @Html.TextBox("filter", "", new {@placeholder = "Sök..."})
+        <input class="btn btn-primary" type="submit" value="submit" />
+
+
+        </div>
+        <div class="input-group-append">
+        @Html.DropDownList("orderVal", new SelectList(Enum.GetValues(typeof(filterVal))),
+        "Order", new
+        {
+        onchange = @"form.submit();"
+        })
+        </div>
+        </div>
+
 
         } *@
 
-
-<!-- Start video hero -->
-<div class="video-hero jquery-background-video-wrapper demo-video-wrapper">
-  <video class="jquery-background-video" autoplay muted loop poster="https://d2ezlykacdqcnj.cloudfront.net/_assets/home-video/beach-waves-loop.jpg">
-    <source src="https://d2ezlykacdqcnj.cloudfront.net/_assets/home-video/beach-waves-loop.mp4" type="video/mp4">
-    <source src="https://d2ezlykacdqcnj.cloudfront.net/_assets/home-video/beach-waves-loop.webm" type="video/webm">
-    <source src="https://d2ezlykacdqcnj.cloudfront.net/_assets/home-video/beach-waves-loop.ogv" type="video/ogg">
-  </video>
-	  <div class="video-overlay"></div>
-  	<div class="page-width">
-		    <div class="video-hero--content">
-			     @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
         {
+            <!-- Start video hero -->
 
-            <div class="input-group">
-                <div class="form-control">
-                    @Html.TextBox("filter", "", new {@placeholder = "Sök..."})
-                    <input class="btn btn-primary" type="submit" value="submit" />
-                    
-                       
-                </div>
-                <div class="input-group-append">
-                 @Html.DropDownList("orderVal", new SelectList(Enum.GetValues(typeof(filterVal))),
-                        "Order", new
-                        {
-                            onchange = @"form.submit();"
-                        })
+            <div class="video-hero jquery-background-video-wrapper demo-video-wrapper">
+                <video class="jquery-background-video" autoplay muted loop poster="https://d2ezlykacdqcnj.cloudfront.net/_assets/home-video/beach-waves-loop.jpg">
+                    <source src="https://d2ezlykacdqcnj.cloudfront.net/_assets/home-video/beach-waves-loop.mp4" type="video/mp4">
+                    <source src="https://d2ezlykacdqcnj.cloudfront.net/_assets/home-video/beach-waves-loop.webm" type="video/webm">
+                    <source src="https://d2ezlykacdqcnj.cloudfront.net/_assets/home-video/beach-waves-loop.ogv" type="video/ogg">
+                </video>
+                <div class="video-overlay"></div>
+                <div class="page-width">
+
+                    <div class="video-hero--content">
+
+
+                        <div class="input-group">
+                                @Html.TextBox("filter", "", new 
+                                {
+                                    placeholder = "Sök...",
+                                    @class = "form-control"
+                                })
+                                <input class="btn btn-primary" type="submit" value="Sök" />
+
+
+@*                            <div class="input-group-append">
+                            </div>*@
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
-            
-
+            <div class="row justify-content-end my-3">
+                <div class="col-auto">
+                    @Html.DropDownList("orderVal", new SelectList(Enum.GetValues(typeof(filterVal))),
+                    "Sortera", 
+                    new {
+                        onchange = @"form.submit();",
+                        @class = "form-select"
+                    })
+                </div>
+            </div>
         }
-    		</div>
-  	</div>
-</div>
-<!-- End video hero -->
+        <!-- End video hero -->
 
-<div id="content">
-	  <div class="page-width">
-
-	  </div>
-</div>
+@*        <div id="content">
+            <div class="page-width">
+            </div>
+        </div>*@
 
         <div class="grid-container">
             @foreach (var t in Model.ItemList)
@@ -91,13 +99,13 @@
 
                         <div class="annonsknappar">
                             <form method="post" asp-action="itemsLikedByUser" asp-controller="Home"
-                                  asp-route-id="@t.ProductID">
+                              asp-route-id="@t.ProductID">
                                 <button class="like-btn" type="submit">
                                     <i class="fa-solid fa-star"></i>
                                 </button>
                             </form>
                             <form method="post" asp-action="Product" asp-controller="Home"
-                                  asp-route-id="@t.ProductID">
+                              asp-route-id="@t.ProductID">
                                 <button class="buy-btn" type="submit">
                                     <i class="fa-solid fa-angles-right"></i>
                                 </button>
@@ -109,10 +117,3 @@
         </div>
     </div>
 </tbody>
-
-
-
-
-
-
-
